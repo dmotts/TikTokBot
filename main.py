@@ -10,7 +10,7 @@ proxy = 'http://bnlrgm:7qx41ojpiu@8.46.169.83:5074'
 def parsing(keywords):
     from modules.parser import Parser
 
-    parser = Parser('your_email', 'your_password', proxy=None, headless=True)
+    parser = Parser('your_email', 'your_password', proxy=None, headless=False)
 
     for key in keywords:
         # parser.login()
@@ -22,7 +22,7 @@ def downloading(keywords):
     from modules.downloader import Downloader
 
     for key in keywords:
-        downloader = Downloader(key, proxy=None, headless=True)
+        downloader = Downloader(key, proxy=None, headless=False)
         links = downloader.read_links_file()
 
         for index, link in enumerate(links, 1):
@@ -33,7 +33,7 @@ def downloading(keywords):
 
 if __name__ == '__main__':
     keys = [
-        'keto',
+        'weight loss workout',
     ]
 
     choice = input("Enter '1' to run the parser, '2' to run the downloader: ")

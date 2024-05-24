@@ -17,13 +17,15 @@ class Parser(TikTok):
         self.email = email
         self.password = password
         self.cookies_path = os.path.join(os.path.abspath('data'), 'cookies')
-        self.cookies_file_path = os.path.join(self.cookies_path, f'{self.email}.pkl')
+        self.cookies_file_path = os.path.join(self.cookies_path,
+                                              f'{self.email}.pkl')
 
         os.makedirs(self.cookies_path, exist_ok=True)
 
     def __input_keyword(self, keyword):
         # Find the input element using Selenium and input data into it
-        search_input = self._wait_for_element_clickable(By.CSS_SELECTOR, 'input[data-e2e="search-user-input"]', 60)
+        search_input = self._wait_for_element_clickable(
+            By.CSS_SELECTOR, 'input[data-e2e="search-user-input"]', 60)
         search_input.send_keys(keyword)
 
         # Press the Enter key
@@ -74,7 +76,8 @@ class Parser(TikTok):
                 # Iterate through the provided links and write each one to a new line in the file.
                 for link in links:
                     file.write(link + '\n')
-                    file.flush()  # Flush the buffer to ensure immediate writing.
+                    file.flush(
+                    )  # Flush the buffer to ensure immediate writing.
 
                 # Display a success message indicating that the links were saved to the file.
                 print("Links saved to file.")
@@ -90,9 +93,10 @@ class Parser(TikTok):
     def login(self):
         # Check if cookies file exists
         if self.__cookies_file_exists(self.cookies_file_path):
-            print('Cookies found. Logging into the account with the cookies...')
+            print(
+                'Cookies found. Logging into the account with the cookies...')
 
-            # Load cookies from the existing file
+                # Load cookies from the existing file
             with open(self.cookies_file_path, "rb") as cookies_file:
                 cookies = pickle.load(cookies_file)
 
@@ -111,21 +115,25 @@ class Parser(TikTok):
                 self.driver.get(self.LOGIN_URL)
 
                 # Find and fill in the email input field
-                input_email = self._wait_for_element_located(By.CSS_SELECTOR, 'input[type="text"]')
+                input_email = self._wait_for_element_located(
+                    By.CSS_SELECTOR, 'input[type="text"]')
                 input_email.send_keys(self.email)
 
                 # Find and fill in the password input field
-                input_password = self._wait_for_element_located(By.CSS_SELECTOR, 'input[type="password"]')
+                input_password = self._wait_for_element_located(
+                    By.CSS_SELECTOR, 'input[type="password"]')
                 input_password.send_keys(self.password)
 
                 # Find and click the login button
-                login_button = self.driver.find_element(By.CSS_SELECTOR, 'button[data-e2e="login-button"]')
+                login_button = self.driver.find_element(
+                    By.CSS_SELECTOR, 'button[data-e2e="login-button"]')
                 login_button.click()
 
                 sleep(30)
 
                 # Wait for the login button to become invisible (indicating successful login)
-                self._wait_for_element_invisible(By.CSS_SELECTOR, 'button[data-e2e="login-button"]')
+                self._wait_for_element_invisible(
+                    By.CSS_SELECTOR, 'button[data-e2e="login-button"]')
 
                 # Get the current session cookies and save them to a file
                 cookies = self.driver.get_cookies()
@@ -155,16 +163,3 @@ class Parser(TikTok):
             video_links = self.__parsing_processing(video_tab_xpath, 15)
 
         self.__save_links_to_file(video_links, file_path)
-
-
-
-
-
-
-
-
-
-
-
-
-
