@@ -151,11 +151,13 @@ class Parser(TikTok):
 
         self.driver.get(self.URL)
         self.__input_keyword(key)
+       
+        # Sleep for 60 seconds to allow the user to allow the user to solve in captcha
         sleep(60)
 
         # XPath expressions for finding links on the Top and Videos tabs
         top_tab_xpath = '//*[@id="tabs-0-tab-search_top"]'
-        video_tab_xpath = '//div[@data-e2e="search_video-item"]//a[@tabindex="-1"]'
+        video_tab_xpath = '//*[@id="tabs-0-tab-search_video"]'
 
         if mode == 'top':
             video_links = self.__parsing_processing(top_tab_xpath, 15)
