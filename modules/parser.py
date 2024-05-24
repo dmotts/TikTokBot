@@ -154,7 +154,7 @@ class Parser(TikTok):
         sleep(60)
 
         # XPath expressions for finding links on the Top and Videos tabs
-        top_tab_xpath = '//div[@data-e2e="search_top-item"]//a[@tabindex="-1"]'
+        top_tab_xpath = '//*[@id="tabs-0-tab-search_top"]'
         video_tab_xpath = '//div[@data-e2e="search_video-item"]//a[@tabindex="-1"]'
 
         if mode == 'top':
