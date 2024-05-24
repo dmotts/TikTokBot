@@ -1,19 +1,20 @@
-
-
+import os
 
 # If you want to work through a proxy, specify the proxy in the format: TYPE://LOGIN:PASSWORD@IP:PORT
 # 10 FREE proxies: https://www.webshare.io/?referral_code=fp27vdieqruw
 
-proxy = 'http://bnlrgm:7qx41ojpiu@8.46.169.83:5074'
+proxy =  'http://bnlrgm:7qx41ojpiu@8.46.169.83:5074'
 
+email = os.environ['TIKTOK_EMAIL']
+password = os.environ['TIKTOK_PASSWORD']
 
 def parsing(keywords):
     from modules.parser import Parser
 
-    parser = Parser('your_email', 'your_password', proxy=None, headless=False)
+    parser = Parser(email, password, proxy=None, headless=False)
 
     for key in keywords:
-        # parser.login()
+        parser.login()
 
         parser.parse_by_keyword(key)
 
