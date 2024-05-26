@@ -92,7 +92,7 @@ class Parser(TikTok):
 
     def login(self):
         # Check if cookies file exists
-        if self.__cookies_file_exists(self.cookies_file_path):
+        if (False):# self.__cookies_file_exists(self.cookies_file_path):
             print(
                 'Cookies found. Logging into the account with the cookies...')
 
