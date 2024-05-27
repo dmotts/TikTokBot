@@ -3,7 +3,9 @@ import os
 # If you want to work through a proxy, specify the proxy in the format: TYPE://LOGIN:PASSWORD@IP:PORT
 # 10 FREE proxies: https://www.webshare.io/?referral_code=fp27vdieqruw
 
-proxy =  'http://bnlrgm:7qx41ojpiu@8.46.169.83:5074'
+# proxy =  'http://bnlrgm:7qx41ojpiu@8.46.169.83:5074'
+
+proxy = os.environ['PROXY']
 
 email = os.environ['TIKTOK_EMAIL']
 password = os.environ['TIKTOK_PASSWORD']
